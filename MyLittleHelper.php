@@ -30,7 +30,18 @@ class myLittleHelper implements Plugin{
                 $this->api->autoSave();
                 console("[MyLilhelper] Saving world initated by $issuer");
                 $issuer->sendChat("<MyLilHelper>Saving World...");
-                
+
+                break;
+
+            case "gps":
+
+                $player = $issuer;
+                $x_cord = $player->entity->x;
+                $y_cord = $player->entity->y;
+                $z_cord = $player->entity->z;
+                $world = $player->entity->level->getName();
+                $issuer->sendChat("<MyLilHelper> GPS: $x_cord, $y_cord, $z_cord, World: $world");
+
                 break;
 
         }
