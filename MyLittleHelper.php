@@ -25,6 +25,14 @@ class myLittleHelper implements Plugin{
         $subcmd = strtolower(implode(" ", $params));
         switch($subcmd){
 
+            case "save":
+
+                $this->api->autoSave();
+                console("[MyLilhelper] Saving world initated by $issuer");
+                $issuer->sendChat("<MyLilHelper>Saving World...");
+                
+                break;
+
         }
 
     }
