@@ -62,10 +62,12 @@ class myLittleHelper implements Plugin{
             case "maintenance on":
                 $this->maintance = true;
                 $this->api->chat->broadcast("[MyLilHelper] Maintenance mode enabled!");
+                console("[MyLittleHelper] Maintenance mode enabled, no incoming connections will be accepted.")
                 break;
             case "maintenance off":
                 $this->maintance = false;
                 $this->api->chat->broadcast("[MyLilHelper] Maintenance mode disabled!");
+                console("[MyLittleHelper] Maintenance mode disabled, connections allowed.");
                 break;
 
 
