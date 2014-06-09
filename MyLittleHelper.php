@@ -21,10 +21,12 @@ class myLittleHelper implements Plugin{
     public function init(){
         $this->api->addHandler("player.connect", array($this, "eventHandler"), 100);
         $this->api->console->register("mlh", "My Little Helper tools!", array($this, "commands"));
+        $this->api->console->register("broadcast", "My Little Helper tools!", array($this, "standaloneCommands"));
         console("§a[MyLilHelper] MyLittleHelper loaded...");
         console("§a[MyLilHelper] support & suggestions twitter.com/ipaddey");
         $this->api->addHandler("player.connect", array($this, "eventHandler"), 100);
     }
+    //listen to events for maintenance mode etc
     public function eventHandler($data, $event)
     {
         switch($event)
@@ -48,7 +50,7 @@ class myLittleHelper implements Plugin{
             case "save":
                 $this->api->autoSave();
                 console("[MyLilhelper] Saving world initated by $issuer");
-                $issuer->sendChat("<MyLilHelper>Saving World...");
+                $issuer->sendChat("<MyLilHelper> Saving World...");
                 break;
 
             case "gps":
@@ -62,17 +64,18 @@ class myLittleHelper implements Plugin{
             case "maintenance on":
                 $this->maintance = true;
                 $this->api->chat->broadcast("[MyLilHelper] Maintenance mode enabled!");
-                console("[MyLittleHelper] Maintenance mode enabled, no incoming connections will be accepted.")
+                console("[MyLittleHelper] Maintenance mode enabled, no incoming connections will be accepted.");
                 break;
             case "maintenance off":
                 $this->maintance = false;
                 $this->api->chat->broadcast("[MyLilHelper] Maintenance mode disabled!");
                 console("[MyLittleHelper] Maintenance mode disabled, connections allowed.");
                 break;
-
-
-
         }
+
+    }
+    public function standaloneCommands($cmd, $params, $issuer){
+        $this->api->chat->broadcast($params);
 
     }
 
